@@ -1,0 +1,40 @@
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand">Product Listing</span>
+</nav>
+<div class="searchBar container py-4">
+  <div class="form-group">
+    <input class="form-control w-100"
+           type="text"
+           matInput
+           placeholder="SEARCH PRODUCT"
+           autocomplete="off"
+           (keyup)="searchProduct($event.target.value)">
+  </div>
+</div>
+<div class="no-result container text-center" *ngIf="productList.length === 0">
+  <h5 class="text-secondary">No results found!</h5>
+</div>
+
+
+<div class="listing-block container d-flex flex-wrap" *ngIf="productList.length != 0">
+  <div class="col-md-4 col-lg-3 col-sm-12 mb-4" *ngFor="let product of productList">
+    <mat-card class="event-card">
+      <mat-card-header>
+        <mat-card-title>{{ product?.name }}</mat-card-title>
+        <mat-card-subtitle>Event Date : {{ product?.dateOfEvent }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="product?.image" [alt]="product?.name">
+      <mat-card-content class="m-0">
+        <div class="py-2">
+          <div>Available Seats : {{ product?.availableSeats ? product?.availableSeats : 0 }}</div>
+          <div>Total Seats : {{ product?.totalSeats }}</div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" *ngIf="product?.isBooking" [routerLink]="[product?.id]">Book Now</button>
+        <button mat-button disabled *ngIf=" !product?.isBooking">Sold Out</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
