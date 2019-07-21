@@ -21,13 +21,12 @@
     <mat-card class="event-card">
       <mat-card-header>
         <mat-card-title>{{ product?.name }}</mat-card-title>
-        <mat-card-subtitle>Event Date : {{ product?.dateOfEvent }}</mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image [src]="product?.image" [alt]="product?.name">
       <mat-card-content class="m-0">
         <div class="py-2">
-          <div>Available Seats : {{ product?.availableSeats ? product?.availableSeats : 0 }}</div>
-          <div>Total Seats : {{ product?.totalSeats }}</div>
+          <div>Available : {{ product?.availableProduct ? product?.availableProduct : 0 }}</div>
+          <div>Total : {{ product?.totalProducts }}</div>
         </div>
       </mat-card-content>
       <mat-card-actions>
